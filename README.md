@@ -1,12 +1,12 @@
 # The star-number of graphs with at most 7 vertices
 
 
-This page provides the experimental results concerning the paper "On star-k-PCGs: Exploring class boundaries for small k values" by A. Monti and B. Sinaimeri. 
-https://arxiv.org/abs/2209.11860
+This page provides the experimental results concerning the paper "On star-k-PCGs: Exploring class boundaries for small k values" by A. Monti and B. Sinaimeri [https://arxiv.org/abs/2209.11860]. 
+
 
 ### Graph Interval Recognition Solver
 
-This project provides a set of tools to generate and solve graph interval recognition problems. The goal is to determine whether a graph can be recognized using one or two intervals by assigning weights to its vertices and ensuring that the sum of weights for each edge falls within certain bounds.
+We provide the funcionts to determine whether a graph can be recognized using one or two intervals by assigning weights to its vertices and ensuring that the sum of weights for each edge falls within certain the interval(s).
 
 ### Methods
 
