@@ -1,7 +1,8 @@
 # The star-number of graphs with at most 7 vertices
 
 
-This page provides the experimental results concerning the paper "On star-k-PCGs: Exploring class boundaries for small k values" by A. Monti and B. Sinaimeri.
+This page provides the experimental results concerning the paper "On star-k-PCGs: Exploring class boundaries for small k values" by A. Monti and B. Sinaimeri. 
+https://arxiv.org/abs/2209.11860
 
 ### Graph Interval Recognition Solver
 
