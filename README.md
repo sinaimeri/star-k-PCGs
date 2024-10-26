@@ -19,6 +19,9 @@ We provide the funcionts to determine whether a graph can be recognized using on
 
 3. **Two Interval Solver:**
    - `solve_two_intervals(E, a)`: Determines if a graph `E` can be recognized using one or two intervals with vertex weights between 1 and `a`.
+  
+4. **2-FP Checker:**
+   - `check_2_FP(vertices, edges)`: Checks if there exist 5 distinct pairs of vertices that form a 2FP.
 
 ## Prerequisites
 
