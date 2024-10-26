@@ -266,6 +266,6 @@ def test_case_two_intervals():
 
 
 # Running test cases
-#test_case_single_interval()
-#test_case_two_intervals()
+test_case_single_interval()
+test_case_two_intervals()
 test_case_check_2FP()
