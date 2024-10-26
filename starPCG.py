@@ -162,9 +162,9 @@ def check_2_FP(vertices, edges):
     - The pairs are distinct.
     - w(a_1) + w(a_2) < w(a_3) + w(a_4) < w(a_5) + w(a_6) < w(a_7) + w(a_8) < w(a_9) + w(a_10).
     
-    Parameters:
+    Assumpitons:
     - vertices: A list of vertices ordered by their weight (i.e., w(v_1) < w(v_2) < ... < w(v_n)).
-    - edges: A set of edges represented as tuples of vertex pairs (v_j, v_k) where j < k.
+    - edges: A set of edges represented as lists of vertex pairs (v_j, v_k) where j < k.
     
     Returns:
     - True if the condition holds for any 5 such pairs, False otherwise.
@@ -224,9 +224,9 @@ def check_2FP_for_all_total_orders(vertices,edges):
         print(f"Testing order: {order}")
         result = check_2_FP(order, edges)
         if result:
-            print(f"Condition satisfied with order: {order}")
+            print(f"2FP found with order: {order}")
         else:
-            print(f"This can be a candidate order to prove the star-2-PCG: {order}")
+            print(f"This can be a candidate order to prove that the graph is star-2-PCG: {order}")
             star_2_PCG=True
             break #STOP further testing 
     if not star_2_PCG:
@@ -236,6 +236,9 @@ def test_case_check_2FP():
      # Test case for the graph G536
      graph_edges=[(1, 2), (2, 3), (3, 4), (4, 5), (1, 5), (1,6), (2,6), (3,6), (4,6), (5,6), (6,7)]
      graph_vertices=[1,2,3,4,5,6,7]
+     # an example of a graph that is a sta-2-PCG
+     #graph_edges = [(1, 2), (2, 3), (3, 4), (4, 5), (1,5)]
+     #graph_vertices=[1,2,3,4,5]
      check_2FP_for_all_total_orders(graph_vertices,graph_edges)
 
 
