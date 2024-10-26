@@ -48,7 +48,7 @@ def solve_single_interval(E, a):
     # Create the complementary graph E1
     E1 = [(i, j) for i in range(1, n) for j in range(i + 1, n + 1) if (i, j) not in E]
 
-    # Variables for interval bounds
+    # Variables to define the interval
     d_min = mdl.integer_var(1, name="d_min")
     d_max = mdl.integer_var(1, name="d_max")
     mdl.add_constraint(d_min <= d_max)
@@ -60,7 +60,7 @@ def solve_single_interval(E, a):
     for i, j in E:
         mdl.add_constraint(mdl.logical_and(d_min <= w[i] + w[j], w[i] + w[j] <= d_max))
 
-    # Constraints for edges in the complementary graph E1
+    # Constraints for edges in E1
     for i, j in E1:
         mdl.add_constraint(mdl.logical_or(w[i] + w[j] < d_min, w[i] + w[j] > d_max))
 
@@ -159,7 +159,7 @@ def check_2_FP(vertices, edges):
     (a_7, a_8), (a_9, a_10) such that:
     - (a_1, a_2), (a_5, a_6), (a_9, a_10) are in the edge list.
     - (a_3, a_4), (a_7, a_8) are not in the edge list.
-    - The pairs are distinct.
+    - The pairs are distinct but the vertices are not neccessarly distinct
     - w(a_1) + w(a_2) < w(a_3) + w(a_4) < w(a_5) + w(a_6) < w(a_7) + w(a_8) < w(a_9) + w(a_10).
     
     Assumpitons:
@@ -177,7 +177,7 @@ def check_2_FP(vertices, edges):
     
     # Iterate over all possible sets of 5 distinct pairs
     for (a1, a2), (a3, a4), (a5, a6), (a7, a8), (a9, a10) in combinations(all_pairs, 5):
-        # Check if the edges (a1, a2), (a5, a6), (a9, a10) exist in the edge list
+        # Check if the edges (a1, a2), (a5, a6), (a9, a10) ARE in the edge list
         if ((a1, a2) in edges or (a2, a1) in edges) and \
            ((a5, a6) in edges or (a6, a5) in edges) and \
            ((a9, a10) in edges or (a10, a9) in edges):
@@ -186,7 +186,7 @@ def check_2_FP(vertices, edges):
             if ((a3, a4) not in edges and (a4, a3) not in edges) and \
                ((a7, a8) not in edges and (a8, a7) not in edges):
                 
-                # Now we check the total order using vertex indices (since vertices is ordered by weight)
+                # here we check the total order using vertex indices (since vertices are ordered by weight)
                 index_a1_a2 = (vertices.index(a1), vertices.index(a2))
                 index_a3_a4 = (vertices.index(a3), vertices.index(a4))
                 index_a5_a6 = (vertices.index(a5), vertices.index(a6))
@@ -210,13 +210,14 @@ def check_2_FP(vertices, edges):
 
 
 def check_2FP_for_all_total_orders(vertices,edges):
-    # Define vertices (which will be permuted to represent different total orders by weight)
-    #vertices are represented as a list in V
-    #Edges are reppresented as pairs (i,j) with i<j
+    """ Define vertices (which will be permuted to represent different total orders by weight)
+    - vertices are represented as a list in V
+    - edges are reppresented as pairs (i,j) with i<j
+    - we iterate over all total orders of the vertices
+    - if for ALL total orders we always found a 2FP then we are sure the graph is not a star-2-PCG"""
     
     # Generate all possible total orders of the vertices (permutations)
     total_orders = permutations(vertices)
-    #if for ALL total orders we always found a 2FP then we are sure the graph is not a star-2-PCG
     star_2_PCG=False
 
     # Check each total order
